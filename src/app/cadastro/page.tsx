@@ -1,38 +1,106 @@
-export default function RegisterPage() {
+"use client";
+
+import { useState } from "react";
+
+export default function CadastroPage() {
+  const [nome, setNome] = useState("");
+  const [email, setEmail] = useState("");
+  const [telefone, setTelefone] = useState("");
+  const [senha, setSenha] = useState("");
+  const [confirmarSenha, setConfirmarSenha] = useState("");
+
+  function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+
+    if (senha !== confirmarSenha) {
+      alert("As senhas não coincidem!");
+      return;
+    }
+
+    alert("Usuário cadastrado com sucesso!");
+  }
+
   return (
-    <div className="flex items-center justify-center h-screen">
-      <h1 className="text-4xl font-bold">Cadastro</h1>
+    <div className="min-h-screen flex items-center justify-center bg-slate-900">
+      <div className="w-full max-w-md bg-white rounded-xl shadow-2xl p-8">
+        <h1 className="text-3xl font-bold text-center text-slate-800 mb-6">
+          Cadastro de Usuário
+        </h1>
 
-      <form className="mt-8">
-        <div className="mb-4">
-          <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-            Email
-          </label>
-          <input
-            type="email"
-            id="email"
-            className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-          />
-        </div>
-        
-        <div className="mb-4">
-          <label htmlFor="password" className="block text-sm font-medium text-gray-700">
-            Password
-          </label>
-          <input
-            type="password"
-            id="password"
-            className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-          />
-        </div>
+        <form onSubmit={handleSubmit}>
+          <div className="mb-4">
+            <label className="block text-slate-700 font-medium mb-2">
+              Nome Completo
+            </label>
+            <input
+              type="text"
+              value={nome}
+              onChange={(e) => setNome(e.target.value)}
+              className="w-full border border-gray-300 rounded-lg p-3 text-black"
+              placeholder="Digite seu nome"
+            />
+          </div>
 
-        <button
-          type="submit"
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-        >
-          Cadastrar
-        </button>
-      </form>
+          <div className="mb-4">
+            <label className="block text-slate-700 font-medium mb-2">
+              E-mail
+            </label>
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="w-full border border-gray-300 rounded-lg p-3 text-black"
+              placeholder="Digite seu e-mail"
+            />
+          </div>
+
+          <div className="mb-4">
+            <label className="block text-slate-700 font-medium mb-2">
+              Telefone
+            </label>
+            <input
+              type="tel"
+              value={telefone}
+              onChange={(e) => setTelefone(e.target.value)}
+              className="w-full border border-gray-300 rounded-lg p-3 text-black"
+              placeholder="(44) 99999-9999"
+            />
+          </div>
+
+          <div className="mb-4">
+            <label className="block text-slate-700 font-medium mb-2">
+              Senha
+            </label>
+            <input
+              type="password"
+              value={senha}
+              onChange={(e) => setSenha(e.target.value)}
+              className="w-full border border-gray-300 rounded-lg p-3 text-black"
+              placeholder="Digite sua senha"
+            />
+          </div>
+
+          <div className="mb-6">
+            <label className="block text-slate-700 font-medium mb-2">
+              Confirmar Senha
+            </label>
+            <input
+              type="password"
+              value={confirmarSenha}
+              onChange={(e) => setConfirmarSenha(e.target.value)}
+              className="w-full border border-gray-300 rounded-lg p-3 text-black"
+              placeholder="Confirme sua senha"
+            />
+          </div>
+
+          <button
+            type="submit"
+            className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg transition"
+          >
+            Cadastrar
+          </button>
+        </form>
+      </div>
     </div>
   );
 }
